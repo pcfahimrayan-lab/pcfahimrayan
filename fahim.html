@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fahim's Education Hub</title>
+  <link rel="stylesheet" href="fahim.css" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">Fahim</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#upload">Upload</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="section" data-aos="zoom-in">
+    <h1>Fahim</h1>
+    <p>Welcome to my educational website ✨</p>
+  </section>
+
+  <section id="about" class="section" data-aos="fade-up">
+    <h2>About</h2>
+    <p>I’m building this site to share knowledge and resources. Let’s grow smarter together 🚀</p>
+  </section>
+
+  <section id="services" class="section" data-aos="fade-right">
+    <h2>Services</h2>
+    <p>Notes, Tutorials, Quizzes, and more coming soon!</p>
+  </section>
+
+  <section id="upload" class="section" data-aos="fade-left">
+    <h2>Upload Notes</h2>
+    <form id="uploadForm">
+      <input type="text" id="title" placeholder="Title" required><br><br>
+      <textarea id="content" placeholder="Your notes..." required></textarea><br><br>
+      <button type="submit">Upload</button>
+    </form>
+    <div id="preview"></div>
+  </section>
+
+  <section id="contact" class="section" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Drop a hi at: <a href="mailto:fahim@education.com">fahim@education.com</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Fahim. All rights reserved.</p>
+  </footer>
+
+  <!-- JS Libraries -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- ScrollSpy -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((a) => {
+        a.classList.remove("active");
+        if (a.getAttribute("href").includes(current)) {
+          a.classList.add("active");
+        }
+      });
+    });
+  </script>
+
+  <!-- Upload Form JS -->
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+      const preview = document.getElementById("preview");
+      preview.innerHTML = `<h4>${title}</h4><p>${content}</p><p><em>Note added (not saved permanently)</em></p>`;
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
